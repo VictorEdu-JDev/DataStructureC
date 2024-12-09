@@ -12,4 +12,6 @@ List* lst_delete(List* list, int value);
 void lst_print(List* list);
 void lst_destroy(List* list);
 
+int lst_length(List* list);
+
 #endif //LIST_H
