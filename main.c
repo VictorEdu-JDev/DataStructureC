@@ -1,32 +1,14 @@
+#include <stdio.h>
 #include <stdlib.h>
-#include "interfaces/queue.h"
+#include "interfaces/list.h"
 
 int main(void) {
+    List* list = lst_create();
 
-    Queue* queue = que_create();
+    list = lst_add(list, 10);
 
-    enqueue(queue, 10);
-    enqueue(queue, 20);
-    enqueue(queue, 30);
-    enqueue(queue, 40);
-    enqueue(queue, 50);
-    enqueue(queue, 60);
 
-    que_print(queue);
-
-    dequeue(queue);
-
-    que_print(queue);
-
-    dequeue(queue);
-
-    que_print(queue);
-
-    dequeue(queue);
-
-    que_print(queue);
-
-    que_destroy(queue);
+    printf("%d\n", lst_length(list));
 
     return EXIT_SUCCESS;
 }
