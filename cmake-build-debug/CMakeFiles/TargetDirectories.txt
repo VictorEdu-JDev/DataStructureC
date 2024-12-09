@@ -1,0 +1,3 @@
+C:/Users/victo/CLionProjects/DataStructureC/cmake-build-debug/CMakeFiles/Revisao.dir
+C:/Users/victo/CLionProjects/DataStructureC/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/victo/CLionProjects/DataStructureC/cmake-build-debug/CMakeFiles/rebuild_cache.dir

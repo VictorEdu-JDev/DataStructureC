@@ -1,0 +1,8 @@
+# ninja log v6
+7	63	7554167506804318	CMakeFiles/Revisao.dir/implementations/list.c.obj	6206c9781d474d5c
+60	121	7554171658411849	Revisao.exe	42b486c2260cf904
+8	61	7554154885273820	CMakeFiles/Revisao.dir/implementations/queue_vector.c.obj	5cc68a9a86a8f6cb
+3	51	7554171657843164	CMakeFiles/Revisao.dir/main.c.obj	2a9acee43e73b077
+3	59	7554128431667100	CMakeFiles/Revisao.dir/implementations/stack.c.obj	f61a0ef8242377ea
+3	58	7554128157594727	CMakeFiles/Revisao.dir/implementations/stack_vector.c.obj	cd659b4d039640fb
+6	60	7554171657874710	CMakeFiles/Revisao.dir/implementations/queue.c.obj	2734b6889d4df5d4
