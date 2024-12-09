@@ -4,11 +4,16 @@
 
 struct list {
     int data;
+    int length;
     List* next;
 };
 
 List* lst_create() {
-    return NULL;
+    List* new = (List*)malloc(sizeof(List));
+    new->data;
+    new->length = 0;
+    new->next = NULL;
+    return new;
 }
 
 int lst_isEmpty(List* list) {
@@ -19,6 +24,12 @@ List* lst_add(List* list, int data) {
     List* newList = (List*)malloc(sizeof(List));
     newList->data = data;
     newList->next = list;
+
+    if (list == NULL) {
+        newList->length = 1;
+    } else {
+        newList->length = ++list->length;
+    }
 
     return newList;
 }
@@ -51,6 +62,10 @@ List* lst_delete(List* list, int data) {
     if (list->data == data) {
         List* temp = list->next;
         free(list);
+
+        if(temp != NULL) temp->length--;
+        else temp = lst_create();
+
         return temp;
     }
 
@@ -61,6 +76,7 @@ List* lst_delete(List* list, int data) {
         if (temp->data == data) {
             tempBefore->next = temp->next;
             free(temp);
+            list->length--;
             return list;
         }
         tempBefore = temp;
@@ -77,5 +93,9 @@ void lst_destroy(List* list) {
         free(list);
         list = temp;
     }
+}
+
+int lst_length(List* list) {
+    return list->length;
 }
 
