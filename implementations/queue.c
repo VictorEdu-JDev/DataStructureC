@@ -48,21 +48,25 @@ int que_is_empty(Queue* queue) {
 }
 
 int dequeue(Queue* queue) {
-    List* temp;
-    int a;
-    if (que_is_empty(queue)) {
-        printf("Queue is empty\n");
+    if (queue == NULL || que_is_empty(queue)) {
+        printf("Queue is empty or uninitialized\n");
         exit(1);
     }
-    a = queue->head->data;
-    temp = queue->head;
+
+    List* temp = queue->head;
+    int data = temp->data;
+
     queue->head = queue->head->next;
-    free(temp);
-    if (que_is_empty(queue)) {
+
+    if (queue->head == NULL) {
         queue->tail = NULL;
     }
-    return a;
+
+    free(temp);
+
+    return data;
 }
+
 
 void que_print(Queue* queue) {
     List* temp = queue->head;
@@ -74,6 +78,10 @@ void que_print(Queue* queue) {
 }
 
 void que_destroy(Queue* queue) {
+    if (queue == NULL) {
+        return;
+    }
+
     List* temp = queue->head;
     List* aux;
     while (temp != NULL) {
@@ -82,4 +90,73 @@ void que_destroy(Queue* queue) {
         temp = aux;
     }
     free(queue);
+}
+
+int count_greater(Queue* queue, int n) {
+    int count = 0;
+    List* temp = queue->head;
+    while (temp != NULL) {
+        if (temp->data > n) {
+            count++;
+        }
+        temp = temp->next;
+    }
+    return count;
+}
+
+Queue* reverse_queue(Queue* queue) {
+    Queue* reversed = que_create();
+    List* temp = queue->head;
+    while (temp != NULL) {
+        List* new_node = (List*)malloc(sizeof(List));
+        new_node->data = temp->data;
+        new_node->next = reversed->head;
+        reversed->head = new_node;
+        if (reversed->tail == NULL) {
+            reversed->tail = new_node;
+        }
+        temp = temp->next;
+    }
+    return reversed;
+}
+
+int count_even(Queue* queue) {
+    int count = 0;
+    List* temp = queue->head;
+    while (temp != NULL) {
+        if (temp->data % 2 == 0) {
+            count++;
+        }
+        temp = temp->next;
+    }
+    return count;
+}
+
+void que_execute_test() {
+    int a;
+    int qtd;
+
+    Queue* f1 = que_create();
+    enqueue(f1, 11);
+    enqueue(f1, 12);
+    enqueue(f1, 13);
+    enqueue(f1, 14);
+    enqueue(f1, 15);
+
+    a = dequeue(f1);
+
+    printf("Valor removido da fila f1: %d\n", a);
+    que_print(f1);
+
+    Queue* f2 = reverse_queue(f1);
+    que_print(f2);
+    qtd = count_greater(f1, 12);
+
+    printf("Num. de elem. maiores que 12 em f1: %d\n", qtd);
+    printf("Qtd. elem. pares na fila f1: %d\n", count_even(f1));
+
+    que_destroy(f1);
+    que_destroy(f2);
+
+    system("PAUSE");
 }
