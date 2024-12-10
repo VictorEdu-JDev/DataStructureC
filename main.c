@@ -1,14 +1,18 @@
 #include <stdio.h>
-#include <stdlib.h>
+
 #include "interfaces/list.h"
+#include "interfaces/queue.h"
+#include "interfaces/stack_vector.h"
 
 int main(void) {
-    List* list = lst_create();
+    printf("TESTE DE LIST\n");
+    lst_execute_test();
 
-    list = lst_add(list, 10);
+    printf("TESTE DE STACK_VECTOR\n");
+    stk_execute_test();
 
+    printf("TESTE DE QUEUE\n");
+    que_execute_test();
 
-    printf("%d\n", lst_length(list));
-
-    return EXIT_SUCCESS;
+    return 0;
 }
