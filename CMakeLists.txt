@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.29)
-project(Revisao C)
+project(DataStructureC C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(Revisao main.c
+add_executable(DataStructureC main.c
         implementations/list.c
         interfaces/list.h
         interfaces/stack_vector.h
