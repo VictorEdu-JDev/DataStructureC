@@ -22,12 +22,11 @@ Queue_Vector* que_vector_create() {
 }
 
 void enqueue_vector(Queue_Vector* queue, int value) {
-    int end;
     if (queue->value == QUEUE_SIZE) {
         printf("Queue is full");
         exit(1);
     }
-    end = (queue->start + queue->value) % QUEUE_SIZE;
+    int end = (queue->start + queue->value) % QUEUE_SIZE;
     queue->data[end] = value;
     queue->value++;
 }

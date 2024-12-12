@@ -52,7 +52,7 @@ int vector_pop(Stack_Vector* stack) {
     return stack->data[stack->top];
 }
 
-int get_vector_top(Stack_Vector* stack) {
+int topo(Stack_Vector* stack) {
     if (stk_vector_is_empty(stack)) {
         printf("Erro: pilha vazia.\n");
         exit(1);
@@ -60,7 +60,7 @@ int get_vector_top(Stack_Vector* stack) {
     return stack->data[stack->top - 1];
 }
 
-int odds_vector(Stack_Vector* stack) {
+int impares(Stack_Vector* stack) {
     int count = 0;
     for (int i = 0; i < stack->top; i++) {
         if (stack->data[i] % 2 != 0) {
@@ -70,7 +70,7 @@ int odds_vector(Stack_Vector* stack) {
     return count;
 }
 
-Stack_Vector* push_even_vector(Stack_Vector* p1, Stack_Vector* p2) {
+Stack_Vector* empilha_pares(Stack_Vector* p1, Stack_Vector* p2) {
     Stack_Vector* aux = stk_vector_create();
 
     for (int i = 0; i < p1->top; i++) {
@@ -109,15 +109,15 @@ void stk_execute_test() {
     vector_pop(p1);
     stk_vector_print(p1);
 
-    printf("Elemento no topo da pilha p1: %d\n", get_vector_top(p1));
-    printf("Qtde elemts impares na pilha p1: %d\n", odds_vector(p1));
+    printf("Elemento no topo da pilha p1: %d\n", topo(p1));
+    printf("Qtde elemts impares na pilha p1: %d\n", impares(p1));
 
     Stack_Vector* p2 = stk_vector_create();
     vector_push(p2, 3);
     vector_push(p2, 4);
     vector_push(p2, 5);
 
-    p2 = push_even_vector(p1, p2);
+    p2 = empilha_pares(p1, p2);
     stk_vector_print(p2);
 
     stk_vector_destroy(p1);

@@ -33,16 +33,13 @@ void stk_push(Stack *stack, int value) {
 }
 
 int stk_pop(Stack *stack) {
-    int a;
-
-    List* list;
     if (stk_is_empty(stack)) {
         printf("Empty stack\n");
         exit(1);
     }
 
-    list = stack->first;
-    a = list->value;
+    List* list = stack->first;
+    int a = list->value;
     stack->first = list->next;
 
     free(list);
@@ -71,4 +68,40 @@ void stk_destroy(Stack *stack) {
         list = aux;
     }
     free(stack);
+}
+
+void stk_push_menor(Stack *stack, int value) {
+    List* list = (List*)malloc(sizeof(List));
+    if (list == NULL) {
+        printf("Memory allocation failed in stk_push_menor()\n");
+        exit(1);
+    }
+
+    if (stack->first == NULL) {
+        list->value = value;
+        list->next = stack->first;
+        stack->first = list;
+        return;
+    }
+
+    if (stack->first->value > value) {
+        list->value = value;
+        list->next = stack->first;
+        stack->first = list;
+    } else {
+        free(list);
+        printf("Valor maior que o topo da pilha.\n");
+    }
+}
+
+int stk_sum(Stack* stk) {
+    if (stk->first == NULL) return 0;
+
+    List* aux = stk->first;
+    int sum = 0;
+    while (aux != NULL) {
+        sum += aux->value;
+        aux = aux->next;
+    }
+    return sum;
 }

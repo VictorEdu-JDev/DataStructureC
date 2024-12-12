@@ -11,9 +11,9 @@ int vector_pop(Stack_Vector* stack);
 void stk_vector_print(Stack_Vector* stack);
 void stk_vector_destroy(Stack_Vector* stack);
 
-int get_vector_top(Stack_Vector* stack);
-int odds_vector(Stack_Vector* stack);
-Stack_Vector* push_even_vector(Stack_Vector* p1, Stack_Vector* p2);
+int topo(Stack_Vector* stack);
+int impares(Stack_Vector* stack);
+Stack_Vector* empilha_pares(Stack_Vector* p1, Stack_Vector* p2);
 
 void stk_execute_test();
 

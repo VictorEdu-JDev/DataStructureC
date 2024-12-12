@@ -92,7 +92,7 @@ void que_destroy(Queue* queue) {
     free(queue);
 }
 
-int count_greater(Queue* queue, int n) {
+int qtde_maior(Queue* queue, int n) {
     int count = 0;
     List* temp = queue->head;
     while (temp != NULL) {
@@ -104,7 +104,7 @@ int count_greater(Queue* queue, int n) {
     return count;
 }
 
-Queue* reverse_queue(Queue* queue) {
+Queue* inverte(Queue* queue) {
     Queue* reversed = que_create();
     List* temp = queue->head;
     while (temp != NULL) {
@@ -120,7 +120,7 @@ Queue* reverse_queue(Queue* queue) {
     return reversed;
 }
 
-int count_even(Queue* queue) {
+int pares(Queue* queue) {
     int count = 0;
     List* temp = queue->head;
     while (temp != NULL) {
@@ -130,6 +130,21 @@ int count_even(Queue* queue) {
         temp = temp->next;
     }
     return count;
+}
+
+int que_retira_par(Queue* queue) {
+    if (queue->head == NULL) return 1;
+
+    List* temp = queue->head;
+    int data = temp->data;
+    if (data % 2 == 0) {
+        queue->head = queue->head->next;
+        free(temp);
+        printf("Dado removido: %d\n", data);
+        return data;
+    }
+    printf("Nenhum dado removido.\n");
+    return 1;
 }
 
 void que_execute_test() {
@@ -148,12 +163,12 @@ void que_execute_test() {
     printf("Valor removido da fila f1: %d\n", a);
     que_print(f1);
 
-    Queue* f2 = reverse_queue(f1);
+    Queue* f2 = inverte(f1);
     que_print(f2);
-    qtd = count_greater(f1, 12);
+    qtd = qtde_maior(f1, 12);
 
     printf("Num. de elem. maiores que 12 em f1: %d\n", qtd);
-    printf("Qtd. elem. pares na fila f1: %d\n", count_even(f1));
+    printf("Qtd. elem. pares na fila f1: %d\n", pares(f1));
 
     que_destroy(f1);
     que_destroy(f2);

@@ -75,7 +75,7 @@ void lst_destroy(List* list) {
     }
 }
 
-int lst_length(List* list) {
+int comprimento(List* list) {
     int length = 0;
     List* current = list;
     while (current != NULL) {
@@ -85,7 +85,7 @@ int lst_length(List* list) {
     return length;
 }
 
-int lst_less_than(List* list, int value) {
+int menores(List* list, int value) {
     int count = 0;
     List* current = list;
     while (current != NULL) {
@@ -97,7 +97,7 @@ int lst_less_than(List* list, int value) {
     return count;
 }
 
-int lst_sum(List* list) {
+int soma(List* list) {
     int sum = 0;
     List* current = list;
     while (current != NULL) {
@@ -107,7 +107,7 @@ int lst_sum(List* list) {
     return sum;
 }
 
-int lst_prime(List* list) {
+int primo(List* list) {
     int primeCount = 0;
     List* current = list;
 
@@ -135,7 +135,7 @@ int lst_prime(List* list) {
     return primeCount;
 }
 
-List* lst_concat(List* list1, List* list2) {
+List* lst_conc(List* list1, List* list2) {
     if (list1 == NULL) return list2;
     if (list2 == NULL) return list1;
 
@@ -155,7 +155,7 @@ List* lst_concat(List* list1, List* list2) {
     return newList;
 }
 
-List* lst_diff(List* list1, List* list2) {
+List* lst_diferenca(List* list1, List* list2) {
     if (list1 == NULL || list2 == NULL) return list1;
 
     List* diff = NULL;
@@ -172,6 +172,36 @@ List* lst_diff(List* list1, List* list2) {
     return diff;
 }
 
+int lst_maiores(List* list1, int value) {
+    int count = 0;
+    List* current = list1;
+    while (current != NULL) {
+        if (current->data > value) {
+            count++;
+        }
+        current = current->next;
+    }
+    return count;
+}
+
+List* lst_insere_fim_lista(List* list1, int value) {
+    List* newList = (List*)malloc(sizeof(List));
+    newList->data = value;
+    newList->next = NULL;
+
+    if (list1 == NULL) {
+        return newList;
+    }
+
+    List* temp = list1;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newList;
+
+    return list1;
+}
+
 void lst_execute_test() {
     List* l1 = lst_create();
     l1 = lst_add(l1, 60);
@@ -184,20 +214,20 @@ void lst_execute_test() {
     l1 = lst_delete(l1, 41);
     lst_print(l1);
 
-    printf("Num. nos c/ info < que 30: %d\n", lst_less_than(l1, 30));
-    printf("O comprimento da lista eh %d\n", lst_length(l1));
-    printf("Soma dos valores dos nos %d\n", lst_sum(l1));
-    printf("Num. nos com val. primos eh %d\n", lst_prime(l1));
+    printf("Num. nos c/ info < que 30: %d\n", menores(l1, 30));
+    printf("O comprimento da lista eh %d\n", comprimento(l1));
+    printf("Soma dos valores dos nos %d\n", soma(l1));
+    printf("Num. nos com val. primos eh %d\n", primo(l1));
 
     List* l2 = lst_create();
     l2 = lst_add(l2, 28);
     l2 = lst_add(l2, 45);
     l2 = lst_add(l2, 130);
 
-    List* l3 = lst_concat(l1, l2);
+    List* l3 = lst_conc(l1, l2);
     lst_print(l3);
 
-    l1 = lst_diff(l1, l2);
+    l1 = lst_diferenca(l1, l2);
     lst_print(l1);
 
     lst_destroy(l1);

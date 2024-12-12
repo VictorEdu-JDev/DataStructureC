@@ -11,5 +11,8 @@ int stk_pop(Stack* stack);
 void stk_print(Stack* stack);
 void stk_destroy(Stack* stack);
 
+void stk_push_menor(Stack* stack, int value);
+int stk_sum(Stack* stack);
+
 
 #endif //STACK_H

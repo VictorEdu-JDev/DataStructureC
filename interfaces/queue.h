@@ -12,9 +12,11 @@ int dequeue(Queue* queue);
 void que_print(Queue* queue);
 void que_destroy(Queue* queue);
 
-int count_greater(Queue* queue, int n);
-Queue* reverse_queue(Queue* queue);
-int count_even(Queue* queue);
+int qtde_maior(Queue* queue, int n);
+Queue* inverte(Queue* queue);
+int pares(Queue* queue);
+
+int que_retira_par(Queue* queue);
 
 void que_execute_test();
 
