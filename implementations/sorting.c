@@ -22,7 +22,6 @@ void bubble_sort(int size, int *array) {
 
         for (j = 0; j < i; j++) {
             if (array[j] > array[j + 1]) {
-                // Troca os valores
                 temp = array[j];
                 array[j] = array[j + 1];
                 array[j + 1] = temp;
@@ -45,9 +44,9 @@ void quick_sort(int n, int *v) {
 }
 
 int partition(int *v, int n) {
-    int pivot = v[0];  // Pivô
-    int left = 1;      // Índice que avança da esquerda
-    int right = n - 1; // Índice que retrocede da direita
+    int pivot = v[0];
+    int left = 1;
+    int right = n - 1;
 
     while (1) {
         while (left < n && v[left] <= pivot) left++;
@@ -62,9 +61,8 @@ int partition(int *v, int n) {
         }
     }
 
-    // Coloca o pivô na posição correta
     swap(&v[0], &v[right]);
-    return right; // Retorna o índice do pivô
+    return right;
 }
 
 void swap(int *a, int *b) {
@@ -140,36 +138,33 @@ void merge_sort(int size, int arr[]) {
 
 void heap_sort(int size, int *heap) {
     int j;
-    // Construir o heap
     for (j = size / 2; j >= 1; j--) {
-        restore_heap_down(heap, j, size); // Rearranja os elementos para formar um heap
+        restore_heap_down(heap, j, size);
     }
 
-    // Ordenação
     for (j = size; j >= 2; j--) {
         int temp = heap[1];
         heap[1] = heap[j];
-        heap[j] = temp; // Troca a raiz com o último elemento
+        heap[j] = temp;
 
-        // Restabelece o heap
-        restore_heap_down(heap, 1, j - 1); // Heapify após a troca
+        restore_heap_down(heap, 1, j - 1);
     }
 }
 
 void restore_heap_down(int *heap, int index, int n) {
     int val = heap[index];
-    int j = index * 2;  // Filho esquerdo
+    int j = index * 2;
 
     while (j <= n) {
-        if (j < n && heap[j] < heap[j + 1]) { // Se o filho direito for maior
-            j++; // Vai para o filho direito
+        if (j < n && heap[j] < heap[j + 1]) {
+            j++;
         }
         if (val >= heap[j]) {
-            break; // Se o valor do nó já for maior ou igual aos filhos, interrompe
+            break;
         }
         heap[index] = heap[j];
         index = j;
-        j = index * 2; // Filho esquerdo
+        j = index * 2;
     }
     heap[index] = val;
 }
