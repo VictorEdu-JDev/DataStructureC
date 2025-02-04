@@ -1,18 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#include "interfaces/list.h"
+#include "interfaces/double_linked_list.h"
 #include "interfaces/queue.h"
-#include "interfaces/stack_vector.h"
+#include "interfaces/tree.h"
 
-int main(void) {
-    printf("TESTE DE LIST\n");
-    lst_execute_test();
+int main() {
+    DoubleLinkedList* dll = dll_create();
 
-    printf("TESTE DE STACK_VECTOR\n");
-    stk_execute_test();
+    dll = dll_insert(dll, 10);
+    dll = dll_insert(dll, 20);
+    dll = dll_insert(dll, 30);
+    dll = dll_insert(dll, 40);
+    dll = dll_insert(dll, 50);
+    dll = dll_insert(dll, 60);
+    dll = dll_insert(dll, 70);
+    dll = dll_insert(dll, 80);
+    dll = dll_insert(dll, 90);
+    dll = dll_insert(dll, 100);
 
-    printf("TESTE DE QUEUE\n");
-    que_execute_test();
+    dll_print(dll);
 
-    return 0;
+    return EXIT_SUCCESS;
 }
