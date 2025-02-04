@@ -13,4 +13,11 @@ add_executable(DataStructureC main.c
         interfaces/queue.h
         implementations/queue_vector.c
         interfaces/queue_vector.h
-        implementations/queue.c)
+        implementations/queue.c
+        implementations/circle_list.c
+        interfaces/circle_list.h
+        implementations/tree.c
+        interfaces/tree.h
+        implementations/double_linked_list.c
+        interfaces/double_linked_list.h
+)
