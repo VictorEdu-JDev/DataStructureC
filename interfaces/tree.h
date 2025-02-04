@@ -1,3 +1,6 @@
+//
+// Created by victor-epc on 03/02/25.
+//
 
 #ifndef TREE_H
 #define TREE_H
@@ -20,7 +23,7 @@ TreeSearch* tree_search_node(TreeSearch* tree_search, int data);
 void print_tree_search(TreeSearch* tree);
 TreeSearch* insert_tree_search(TreeSearch* tree, int data);
 TreeSearch* delete_tree_search(TreeSearch* tree, int data);
-
+int pares_bst(TreeSearch* tree);
 
 TreeAVL* create_tree_avl(void);
 TreeAVL *insert_tree_avl(TreeAVL *ptr, int data, int *ht_inc);

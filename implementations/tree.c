@@ -1,6 +1,10 @@
-#include "../interfaces/tree.h"
+//
+// Created by victor-epc on 03/02/25.
+//
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "../interfaces/tree.h"
 
 struct tree {
     char info;
@@ -147,6 +151,13 @@ TreeSearch* delete_tree_search(TreeSearch* tree, int data) {
         }
     }
     return tree;
+}
+
+int pares_bst(TreeSearch* tree) {
+    if (tree == NULL) return 0;
+    int count = 0;
+    if (tree->info % 2 == 0) count = 1;
+    return count + (pares_bst(tree->left) + pares_bst(tree->right));
 }
 
 
