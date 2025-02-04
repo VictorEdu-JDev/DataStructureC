@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "../interfaces/arvb.h"
 
 int eh_primo(int data);
@@ -102,8 +103,11 @@ ArvB* delete_arvb(ArvB* tree, const int data) {
 
 int folhas_primos(ArvB* tree) {
     if (tree == NULL) return 0;
-    int count = eh_primo(tree->data);
-    return count + folhas_primos(tree->left) + folhas_primos(tree->right);
+    if (tree->right == NULL && tree->left == NULL) {
+        int count = eh_primo(tree->data);
+        return count + folhas_primos(tree->left) + folhas_primos(tree->right);
+    }
+    return folhas_primos(tree->left) + folhas_primos(tree->right);
 }
 
 int eh_primo(const int data) {
@@ -162,47 +166,54 @@ int iguais(ArvB* tree1, ArvB* tree2) {
 }
 
 // Teste
-// int main() {
-//     ArvB* arv1 = create_arvb();
-//     arv1 = insert_arvb(arv1, 19);
-//     arv1 = insert_arvb(arv1, 5);
-//     arv1 = insert_arvb(arv1, 21);
-//     arv1 = insert_arvb(arv1, 4);
-//     arv1 = insert_arvb(arv1, 43);
-//     arv1 = insert_arvb(arv1, 11);
-//     arv1 = insert_arvb(arv1, 17);
-//
-//     printf("Altura da arvore: %d\n", arv_altura(arv1));
-//     printf("Qtd folhas primos: %d\n", folhas_primos(arv1));
-//     printf("Qtd de nos dois filhos: %d\n", dois_filhos(arv1));
-//     printf("Nos igual altura: %d\n", nos_igual_altura(arv1));
-//
-//     ArvB* arv2 = create_arvb();
-//     arv2 = insert_arvb(arv2, 7);
-//     arv2 = insert_arvb(arv2, 6);
-//     arv2 = insert_arvb(arv2, 11);
-//
-//     ArvB* arv3 = create_arvb();
-//     arv3 = insert_arvb(arv3, 7);
-//     arv3 = insert_arvb(arv3, 6);
-//     arv3 = insert_arvb(arv3, 11);
-//
-//     print_arvb(arv1);
-//     printf("\n");
-//     print_arvb(arv2);
-//     printf("\n");
-//
-//     int comp = iguais(arv1, arv2);
-//     printf("Arvores iguais: %d\n", comp);
-//
-//     comp = iguais(arv2, arv3);
-//     printf("Arvores iguais: %d\n", comp);
-//
-//     destroy_arvb(arv1);
-//     destroy_arvb(arv2);
-//     destroy_arvb(arv3);
-//
-//     system("PAUSE");
-//
-//     return 0;
-// }
+int main() {
+    ArvB* arv1 = create_arvb();
+    arv1 = insert_arvb(arv1, 19);
+    arv1 = insert_arvb(arv1, 5);
+    arv1 = insert_arvb(arv1, 21);
+    arv1 = insert_arvb(arv1, 4);
+    arv1 = insert_arvb(arv1, 43);
+    arv1 = insert_arvb(arv1, 11);
+    arv1 = insert_arvb(arv1, 17);
+
+    printf("Altura da arvore: %d\n", arv_altura(arv1));
+    printf("Qtd folhas primos: %d\n", folhas_primos(arv1));
+    printf("Qtd de nos dois filhos: %d\n", dois_filhos(arv1));
+    printf("Nos igual altura: %d\n", nos_igual_altura(arv1));
+
+    ArvB* arv2 = create_arvb();
+    arv2 = insert_arvb(arv2, 7);
+    arv2 = insert_arvb(arv2, 6);
+    arv2 = insert_arvb(arv2, 11);
+
+    ArvB* arv3 = create_arvb();
+    arv3 = insert_arvb(arv3, 7);
+    arv3 = insert_arvb(arv3, 6);
+    arv3 = insert_arvb(arv3, 11);
+
+    print_arvb(arv1);
+    printf("\n");
+    print_arvb(arv2);
+    printf("\n");
+
+    int comp = iguais(arv1, arv2);
+    printf("Arvores iguais: %d\n", comp);
+
+    comp = iguais(arv2, arv3);
+    printf("Arvores iguais: %d\n", comp);
+
+    destroy_arvb(arv1);
+    destroy_arvb(arv2);
+    destroy_arvb(arv3);
+
+    // O código a seguir verifica o SO em que o programa
+    // é executado, pois este foi escrito em IDE instalada em linux.
+    // Desconsidere se sua máquina roda Windows.
+    #ifdef _WIN32
+        system("PAUSE");
+    #else
+        getchar();
+    #endif
+
+return 0;
+}
