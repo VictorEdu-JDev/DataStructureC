@@ -100,39 +100,30 @@ DoubleLinkedList* dll_insert_final(DoubleLinkedList* dll, int value) {
 }
 
 DoubleLinkedList* dll_insert_two_values(DoubleLinkedList* dll, int x, int y) {
-    if (!dll || !dll->next) {
-        DoubleLinkedList *new_x = malloc(sizeof(DoubleLinkedList));
-        DoubleLinkedList *new_y = malloc(sizeof(DoubleLinkedList));
-
-        new_x->value = x;
-        new_y->value = y;
-        new_x->prev = NULL;
-        new_x->next = new_y;
-        new_y->prev = new_x;
-        new_y->next = dll;
-
-        if (dll) dll->prev = new_y;
-        return new_x;
-    }
-
-    DoubleLinkedList *temp = dll;
-    while (temp->next->next) temp = temp->next;
-
     DoubleLinkedList *new_x = malloc(sizeof(DoubleLinkedList));
     DoubleLinkedList *new_y = malloc(sizeof(DoubleLinkedList));
 
     new_x->value = x;
     new_y->value = y;
 
-    new_x->prev = temp;
-    new_x->next = temp->next;
-    temp->next->prev = new_x;
-    temp->next = new_x;
+    if (!dll) {
+        new_x->prev = NULL, new_x->next = new_y;
+        new_y->prev = new_x, new_y->next = NULL;
+        return new_x;
+    }
 
-    new_y->prev = new_x;
-    new_y->next = new_x->next;
-    if (new_x->next) new_x->next->prev = new_y;
-    new_x->next = new_y;
+    DoubleLinkedList *temp = dll;
+    while (temp->next) temp = temp->next;
+
+    new_x->prev = temp->prev;
+    new_x->next = temp;
+    if (temp->prev) temp->prev->next = new_x;
+    temp->prev = new_x;
+
+    new_y->prev = temp;
+    new_y->next = NULL;
+    temp->next = new_y;
 
     return dll;
 }
+
