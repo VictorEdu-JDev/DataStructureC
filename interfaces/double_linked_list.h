@@ -14,6 +14,8 @@ void dll_print(DoubleLinkedList *list);
 DoubleLinkedList* dll_search(DoubleLinkedList *list, int value);
 DoubleLinkedList* dll_remove(DoubleLinkedList *list, int value);
 void dll_free(DoubleLinkedList *list);
+DoubleLinkedList* dll_insert_final(DoubleLinkedList* dll, int value);
+DoubleLinkedList* dll_insert_two_values(DoubleLinkedList* dll, int x, int y);
 
 
 #endif //DOUBLE_LINKED_LIST_H
